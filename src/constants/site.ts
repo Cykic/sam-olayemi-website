@@ -1,0 +1,46 @@
+export const SITE_CONFIG = {
+  name: "Sam-Olayemi",
+  domain: "sam-olayemi.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://sam-olayemi.com",
+  tagline: "Strategy. Creativity. Technology.",
+  motto: "Think clearly. Create boldly. Build intelligently.",
+  description:
+    "Sam-Olayemi is a multidisciplinary company that builds brands, shapes communication and engineers digital products for startups, SMEs, organisations and leaders.",
+  locale: "en_NG",
+  country: "NG",
+} as const;
+
+export type SocialNetwork = "linkedin" | "instagram" | "x" | "youtube";
+
+export type SocialLink = {
+  network: SocialNetwork;
+  label: string;
+  href: string;
+};
+
+type ContactDetails = {
+  email: string;
+  phone?: { display: string; href: string };
+  /** International format without "+", for wa.me links */
+  whatsapp?: { display: string; number: string };
+  location: string;
+  responseTime: string;
+};
+
+/**
+ * TODO(content): confirm the inbox, and add the phone and WhatsApp numbers.
+ * Anything left undefined is hidden across the site rather than shown empty.
+ */
+export const CONTACT_DETAILS: ContactDetails = {
+  email: "hello@sam-olayemi.com",
+  location: "Nigeria",
+  responseTime: "We reply to every project inquiry within two working days.",
+};
+
+/** TODO(content): add each profile as it goes live; the footer and contact page list only what's here. */
+export const SOCIAL_LINKS: readonly SocialLink[] = [];
+
+export const whatsappHref = (message: string) =>
+  CONTACT_DETAILS.whatsapp
+    ? `https://wa.me/${CONTACT_DETAILS.whatsapp.number}?text=${encodeURIComponent(message)}`
+    : undefined;
