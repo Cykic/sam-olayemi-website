@@ -1,75 +1,48 @@
 import type { Metadata } from "next";
 
-import { getArticles, getServicesBySlugs, getWorkItems } from "@/api";
-import { ArchitectureDiagram } from "@/components/architecture-diagram";
-import { BrandJourney } from "@/components/brand-journey";
-import { ChapterSection } from "@/components/chapter-section";
+import { getArticles, getServices, getWorkItems } from "@/api";
 import { CtaSection } from "@/components/cta-section";
+import { EditorialHero } from "@/components/editorial-hero";
 import { FaqSection } from "@/components/faq-section";
 import { FeaturedWork } from "@/components/featured-work";
-import { HeroSection } from "@/components/hero-section";
 import { InsightsPreview } from "@/components/insights-preview";
-import { LogoCloud } from "@/components/logo-cloud";
+import { ProcessTimeline } from "@/components/process-timeline";
 import { ScrollStory } from "@/components/scroll-story";
-import { Testimonials } from "@/components/testimonials";
-import {
-  COMPANY_FAQ,
-  HOME_BRAND,
-  HOME_FAQ_INTRO,
-  HOME_STRATEGY,
-  HOME_TECHNOLOGY,
-} from "@/constants";
+import { ServiceExplorer } from "@/components/service-explorer";
+import { ServicePillars } from "@/components/service-pillars";
+import { StrategicStatement } from "@/components/strategic-statement";
+import { Section } from "@/components/ui/section";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { COMPANY_FAQ, HOME_FAQ_INTRO } from "@/constants";
 import { pageMetadata } from "@/utils";
 
 export const metadata: Metadata = pageMetadata("home");
 
+/** The first brief's homepage order: intro, problem, capabilities, proof, process, conversion */
 export default async function HomePage() {
-  const [brandServices, technologyServices, strategyServices, work, articles] = await Promise.all([
-    getServicesBySlugs(HOME_BRAND.services),
-    getServicesBySlugs(HOME_TECHNOLOGY.services),
-    getServicesBySlugs(HOME_STRATEGY.services),
-    getWorkItems(),
-    getArticles(3),
-  ]);
+  const [services, work, articles] = await Promise.all([getServices(), getWorkItems(), getArticles(3)]);
 
   return (
     <>
-      {/* Here's what we do */}
-      <HeroSection />
-
-      {/* Why it matters: strategy → creativity → technology → execution → result */}
-      <ScrollStory />
-
-      {/* What we can help with, one discipline at a time */}
-      <ChapterSection id="brand" eyebrow={HOME_BRAND.eyebrow} title={HOME_BRAND.title} body={HOME_BRAND.body} services={brandServices}>
-        <BrandJourney />
-      </ChapterSection>
-
-      <ChapterSection id="technology" tone="inverse" eyebrow={HOME_TECHNOLOGY.eyebrow} title={HOME_TECHNOLOGY.title} body={HOME_TECHNOLOGY.body} services={technologyServices}>
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
-          <ArchitectureDiagram className="text-inverse-foreground lg:col-span-7" />
-          <div className="flex flex-col gap-5 lg:col-span-4 lg:col-start-9">
-            <h3 className="font-mono text-xs tracking-[0.2em] text-inverse-muted uppercase">What we build with</h3>
-            <p className="text-2xl leading-snug font-medium tracking-[-0.03em] text-inverse-foreground">
-              {HOME_TECHNOLOGY.stack.join(" · ")}
-            </p>
-          </div>
-        </div>
-      </ChapterSection>
-
-      <ChapterSection id="strategy" tone="surface" layout="centered" eyebrow={HOME_STRATEGY.eyebrow} title={HOME_STRATEGY.title} body={HOME_STRATEGY.body} services={strategyServices} />
-
-      {/* Proof */}
+      <EditorialHero />
+      <StrategicStatement />
+      <ServicePillars services={services} />
       <FeaturedWork items={work.slice(0, 4)} />
-      <LogoCloud />
-      <Testimonials />
-
+      <ScrollStory />
+      <Section aria-labelledby="explorer-title">
+        <SectionHeading
+          eyebrow="Capabilities"
+          title={<span id="explorer-title">What can we help with?</span>}
+          description="Choose a capability to see what's involved. Every one connects to the others."
+        />
+        <div className="mt-16 lg:mt-24">
+          <ServiceExplorer services={services} />
+        </div>
+      </Section>
+      <ProcessTimeline />
       <InsightsPreview articles={articles} />
-
-      <FaqSection eyebrow={HOME_FAQ_INTRO.eyebrow} title={HOME_FAQ_INTRO.title} items={COMPANY_FAQ} tone="surface" />
-
-      {/* Let's build something */}
-      <CtaSection size="giant" />
+      <FaqSection eyebrow={HOME_FAQ_INTRO.eyebrow} title={HOME_FAQ_INTRO.title} items={COMPANY_FAQ} />
+      <CtaSection />
     </>
   );
 }

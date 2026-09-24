@@ -34,5 +34,4 @@ Search for `TODO(content)` and `TODO(legal)`:
 - Confirm `hello@sam-olayemi.com`, and add phone, WhatsApp and social profiles (`constants/site.ts`). Empty values are hidden.
 - Testimonials, client logos and team profiles (`constants/proof.ts`). Their sections stay hidden until real entries exist.
 - Client case studies: add `kind: "case-study"` items to `constants/work.ts`.
-- The Brand "Connect" line (`constants/home.ts`): the brief was cut off there.
 - Legal review of the privacy policy and terms.

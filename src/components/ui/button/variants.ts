@@ -2,8 +2,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 export const buttonVariants = cva(
   [
-    "group relative inline-flex shrink-0 select-none items-center justify-center gap-2.5",
-    "rounded-full font-medium tracking-[-0.01em] whitespace-nowrap",
+    "group relative inline-flex shrink-0 select-none items-center justify-center gap-3",
+    "rounded-full font-medium tracking-[0.08em] whitespace-nowrap uppercase",
     "transition-[background-color,border-color,color,box-shadow] duration-300 ease-(--ease-out)",
     "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     "disabled:pointer-events-none disabled:opacity-50",
@@ -21,9 +21,9 @@ export const buttonVariants = cva(
         link: "h-auto rounded-sm px-0 text-foreground",
       },
       size: {
-        sm: "h-9 px-4 text-sm",
-        md: "h-12 px-6 text-[0.9375rem]",
-        lg: "h-14 px-7 text-base",
+        sm: "h-10 px-5 text-[0.75rem]",
+        md: "h-12 px-6 text-[0.8125rem]",
+        lg: "h-14 px-8 text-[0.8125rem] sm:h-16 sm:px-9 sm:text-sm",
       },
       fullWidth: {
         true: "w-full",

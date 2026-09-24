@@ -1,20 +1,3 @@
-import { ROUTES, START_PROJECT_HREF } from "./routes";
-
-export const HOME_HERO = {
-  /** Rendered line by line for the mask reveal */
-  headline: ["We build", "what's next."],
-  supporting: "Brand. Communication. Technology.",
-  primary: { label: "Start a project", href: START_PROJECT_HREF },
-  secondary: { label: "Explore what we do", href: ROUTES.services },
-} as const;
-
-/** The hero's closing animation: three disciplines converge into one name */
-export const HOME_CONVERGE = {
-  words: ["Strategy", "Creativity", "Technology"],
-  result: "Sam-Olayemi",
-  caption: "Three disciplines. One team.",
-} as const;
-
 /** The cinematic scroll story: one scene per viewport */
 export const HOME_STORY = {
   title: "Strategy without execution is just a plan.",
@@ -25,42 +8,6 @@ export const HOME_STORY = {
     { key: "execution", word: "Execution", line: "Make it happen.", body: "Launched, measured and improved by the team that did the thinking." },
     { key: "result", word: "Result", line: "Ideas are easy.", body: "Execution is the advantage." },
   ],
-} as const;
-
-export const HOME_BRAND = {
-  eyebrow: "Brand",
-  title: ["Your brand", "should say", "something."],
-  body: "We help businesses find their position, sharpen their voice, and create brands people remember.",
-  services: [
-    "brand-strategy",
-    "marketing-strategy",
-    "strategic-communications",
-    "content-creation",
-    "copywriting",
-    "creative-direction",
-  ],
-  /* TODO(content): the brief was cut off at "Create meaningful…"; confirm the Connect line */
-  journey: [
-    { step: "Discover", line: "Understand the business." },
-    { step: "Define", line: "Find the position." },
-    { step: "Express", line: "Build the identity and voice." },
-    { step: "Connect", line: "Create meaningful connections with the people who matter." },
-  ],
-} as const;
-
-export const HOME_TECHNOLOGY = {
-  eyebrow: "Technology",
-  title: ["Engineered", "to last."],
-  body: "From internal tools to customer-facing platforms, we design and engineer digital products that help businesses operate, scale and compete.",
-  services: ["software-engineering", "web-development", "digital-products", "backend-engineering", "cloud-infrastructure", "technical-consulting"],
-  stack: ["TypeScript", "Node.js", "NestJS", "React", "Next.js", "Redis", "Docker", "AWS", "DigitalOcean", "Linode"],
-} as const;
-
-export const HOME_STRATEGY = {
-  eyebrow: "Strategy",
-  title: ["Think it", "through."],
-  body: "When the problem is bigger than a deliverable, we help you think it through, plan it and get your team moving.",
-  services: ["business-consulting", "campaign-planning", "project-management", "workshops", "training", "public-speaking"],
 } as const;
 
 export const HOME_WORK = {
@@ -81,7 +28,7 @@ export const HOME_FAQ_INTRO = {
 
 export const CTA_BAND = {
   eyebrow: "Start a project",
-  title: ["Build", "something", "meaningful."],
+  title: ["Have something", "worth building?"],
   description: "Tell us what you're working on, what you're trying to solve, or where you want to go next.",
 } as const;
 
@@ -90,3 +37,35 @@ export const HOME_PROCESS = {
   title: "Six stages. One team the whole way.",
   description: "The same process holds whether we're building a brand, a campaign or a platform.",
 } as const;
+
+export const EDITORIAL_HERO = {
+  eyebrow: "Strategy × Creativity × Technology",
+  headline: ["We build brands,", "shape communication", "and engineer", "digital products."],
+  standfirst:
+    "Sam-Olayemi turns business problems into brands, campaigns and software that people actually use, with strategy, creative and engineering handled by one team.",
+  audiences: ["Founders", "SMEs", "Organisations", "Executives"],
+} as const;
+
+export const EDITORIAL_STATEMENT = {
+  eyebrow: "The problem",
+  lead: "Most businesses hire a brand agency, a marketing team and a software company,",
+  accent: "then spend months getting them to agree.",
+  body: "Every handover loses something. The strategy gets simplified, the creative drifts, and the software ends up solving a different problem. We keep strategy, creativity, communication and technology in one room, from the first question to the launch.",
+} as const;
+
+export const MARQUEE_ITEMS = [
+  "Brand Strategy",
+  "Messaging",
+  "Social Strategy",
+  "Content",
+  "Copywriting",
+  "Ghostwriting",
+  "Creative Direction",
+  "Campaigns",
+  "Software Engineering",
+  "Web Development",
+  "Digital Products",
+  "Cloud",
+  "Consulting",
+  "Training",
+] as const;
