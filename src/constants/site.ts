@@ -50,7 +50,7 @@ type ContactDetails = {
  * Anything left undefined is hidden across the site rather than shown empty.
  */
 export const CONTACT_DETAILS: ContactDetails = {
-  email: "hello@sam-olayemi.com",
+  email: "fortune@sam-olayemi.com",
   location: "Nigeria",
   responseTime: "We reply to every project inquiry within two working days.",
 };
