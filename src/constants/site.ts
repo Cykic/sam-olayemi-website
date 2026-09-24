@@ -1,7 +1,25 @@
+const DEFAULT_SITE_URL = "https://sam-olayemi.com";
+
+/**
+ * The canonical origin. Tolerates a blank or bare-host NEXT_PUBLIC_SITE_URL
+ * (e.g. copied empty from .env.example into the host's settings), because
+ * an invalid value here would break every page's metadata at build time.
+ */
+const resolveSiteUrl = (value: string | undefined) => {
+  const trimmed = value?.trim();
+  if (!trimmed) return DEFAULT_SITE_URL;
+
+  try {
+    return new URL(/^https?:\/\//.test(trimmed) ? trimmed : `https://${trimmed}`).origin;
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+};
+
 export const SITE_CONFIG = {
   name: "Sam-Olayemi",
   domain: "sam-olayemi.com",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://sam-olayemi.com",
+  url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
   tagline: "Strategy. Creativity. Technology.",
   motto: "Think clearly. Create boldly. Build intelligently.",
   description:
